@@ -1,2 +1,2 @@
-# Nodemailer-Contact-Form-
-Contact Form - Angular 8 Project
+# Nodemailer-Contact-Form
+Contact Form - Node.js
