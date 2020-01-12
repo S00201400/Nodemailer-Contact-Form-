@@ -6,6 +6,7 @@ const path = require('path');
 const nodemailer = require('nodemailer');
 const cors = require('cors');
 
+const port = process.env.PORT || 5000;
 const app = express();
 app.use(cors());
 
@@ -21,14 +22,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 //route
-app.get('/', res => {
-  res.render('contact', { layout: false });
+app.get('/', function(req, res) {
+  return res.send('Hello the API is at http://localhost:' + '/api');
 });
 
 //this is taking all the information that I need from the contact form
 app.post('/send', (req, res) => {
-  res.render('contact', { layout: false });
-  //console.log(req.body);
   const output = `
     <p> You have a new contact request </p>
     <h3> Contact Details </h3>
@@ -73,8 +72,8 @@ app.post('/send', (req, res) => {
     if (error) {
       return console.log(error);
     }
-    console.log('Message sent: %s', info.messageId);
-    console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
   });
 });
-app.listen(3000, () => console.log('Server started ...'));
+app.listen(port);
+console.log('Server started ...');
+console.log(port);
